@@ -1,11 +1,20 @@
-const input = document.getElementById("imageInput");
-const preview = document.getElementById("preview");
 
-input.addEventListener("change", () => {
-    const file = input.files[0];
+const fileInput = document.getElementById("fileInput");
+const previewImg = document.getElementById("previewImg");
+const plusIcon = document.getElementById("plusIcon");
+
+fileInput.addEventListener("change", function () {
+    const file = this.files[0];
+
     if (file) {
-        preview.src = URL.createObjectURL(file);
-        preview.style.display = "block";
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            previewImg.src = e.target.result;
+            previewImg.classList.remove("hidden");
+            plusIcon.style.display = "none";
+        };
+
+        reader.readAsDataURL(file);
     }
 });
-

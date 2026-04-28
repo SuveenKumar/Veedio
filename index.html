@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Video Generator</title>
+    <title>Veena</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -15,51 +15,41 @@
         <!-- Header -->
         <header class="header">
             <div>
-                <h2>🎬 Sora Studio</h2>
-                <p>Create AI Videos</p>
+                <h2>🎬Veena Studio</h2>
             </div>
             <span class="status">● Live</span>
         </header>
 
         <!-- Prompt -->
         <div class="glass-card">
-            <label>Describe your video</label>
-            <textarea placeholder="A cinematic shot of a futuristic city in rain..."></textarea>
+            <textarea placeholder="प्रॉम्प्ट लिखें"></textarea>
         </div>
 
-        <!-- Model -->
-        <div class="glass-card">
-            <label>AI Model</label>
-            <select id="modelSelect">
-                <option value="sora-2">Sora 2 (1080p • 10s)</option>
-                <option value="higgsfield_v1">Higgsfield (1080p • 5–15s)</option>
-                <option value="kling-3">Kling 3 (1080p • 5–10s)</option>
-                <option value="seedance-2">Seedance 2 (1080p • 5–10s)</option>
-                <option value="nanobanana-video">Nano Banana (720p • 5–10s)</option>
-                <option value="ltxv-2">LTX Video 2 (4K • 6–10s)</option>
-                <option value="ltxv-13b">LTX-Video 13B (480p • 1–60s)</option>
-                <option value="veo2">Veo 2 (1080p • 10s)</option>
-                <option value="wan-25">Wan 2.5 (1080p • 5–10s)</option>
-            </select>
+        <!-- Upload -->
+        <div class="upload-container">
+            <label for="fileInput" class="upload-box">
+                <span id="plusIcon">+</span>
+                <img id="previewImg" class="hidden" />
+            </label>
+            <input type="file" id="fileInput" accept="image/*" hidden />
         </div>
 
-        
         <!-- Settings -->
         <div class="glass-card grid">
             <div>
-                <label>Duration</label>
+                <label>Length</label>
                 <select>
-                    <option>5s</option>
+                    <option>6s</option>
+                    <option>8s</option>
                     <option selected>10s</option>
-                    <option>20s</option>
                 </select>
             </div>
 
             <div>
-                <label>Aspect</label>
+                <label>Video Type</label>
                 <select>
-                    <option>16:9</option>
-                    <option>9:16</option>
+                    <option>Short Video</option>
+                    <option>Long Video</option>
                 </select>
             </div>
 
@@ -70,13 +60,21 @@
                     <option selected>1080p</option>
                 </select>
             </div>
-        </div>
 
-        <!-- Upload -->
-        <div class="glass-card upload">
-            <label>Upload Image</label>
-            <input type="file" id="imageInput">
-            <img id="preview" />
+            <div>
+                <label>AI Model</label>
+                <select id="modelSelect">
+                    <option value="sora-2">Sora 2 (1080p • 10s)</option>
+                    <option value="higgsfield_v1">Higgsfield (1080p • 5–15s)</option>
+                    <option value="kling-3">Kling 3 (1080p • 5–10s)</option>
+                    <option value="seedance-2">Seedance 2 (1080p • 5–10s)</option>
+                    <option value="nanobanana-video">Nano Banana (720p • 5–10s)</option>
+                    <option value="ltxv-2">LTX Video 2 (4K • 6–10s)</option>
+                    <option value="ltxv-13b">LTX-Video 13B (480p • 1–60s)</option>
+                    <option value="veo2">Veo 2 (1080p • 10s)</option>
+                    <option value="wan-25">Wan 2.5 (1080p • 5–10s)</option>
+                </select>
+            </div>
         </div>
 
         <!-- Preview -->
