@@ -22,23 +22,17 @@
 
         <!-- Prompt -->
         <div class="glass-card">
-            <textarea placeholder="प्रॉम्प्ट लिखें"></textarea>
-        </div>
-
-        <!-- Upload -->
-        <div class="upload-container">
-            <label for="fileInput" class="upload-box">
-                <span id="plusIcon">+</span>
-                <img id="previewImg" class="hidden" />
-            </label>
-            <input type="file" id="fileInput" accept="image/*" hidden />
+            <div class="textarea-wrapper">
+                <textarea id="promptInput" placeholder="प्रॉम्प्ट लिखें"></textarea>
+                <div id="wordWarning" class="word-warning"></div>
+            </div>
         </div>
 
         <!-- Settings -->
         <div class="glass-card grid">
             <div>
                 <label>Length</label>
-                <select>
+                <select id="videoLength">
                     <option>6s</option>
                     <option>8s</option>
                     <option selected>10s</option>
@@ -46,8 +40,8 @@
             </div>
 
             <div>
-                <label>Video Type</label>
-                <select>
+                <label>Type</label>
+                <select id="videoType" class="dropDown">
                     <option>Short Video</option>
                     <option>Long Video</option>
                 </select>
@@ -55,15 +49,15 @@
 
             <div>
                 <label>Quality</label>
-                <select>
+                <select id="videoQuality">
                     <option>720p</option>
-                    <option selected>1080p</option>
+                    <option Quality>1080p</option>
                 </select>
             </div>
 
             <div>
                 <label>AI Model</label>
-                <select id="modelSelect">
+                <select id="videoAIModel">
                     <option value="sora-2">Sora 2 (1080p • 10s)</option>
                     <option value="higgsfield_v1">Higgsfield (1080p • 5–15s)</option>
                     <option value="kling-3">Kling 3 (1080p • 5–10s)</option>
@@ -90,7 +84,7 @@
 
     <!-- Bottom CTA -->
     <div class="bottom-bar">
-        <button class="generate-btn">✨ Generate Video</button>
+        <button id="generateBtn">✨ Generate Video</button>
     </div>
 
     <script src="script.js"></script>
