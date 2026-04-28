@@ -35,13 +35,13 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 function Load() {
-    promptInput.value = localStorage.getItem("promptInput");
+    promptInput.value = localStorage.getItem("promptInput") || "";
     handleValidation(promptInput.value.length);
 
-    videoLength.value = localStorage.getItem("videoLength");;
-    videoQuality.value = localStorage.getItem("videoQuality");;
-    videoType.value = localStorage.getItem("videoType");;
-    videoAIModel.value = localStorage.getItem("videoAIModel");;
+    videoLength.value = localStorage.getItem("videoLength") || "10s";
+    videoQuality.value = localStorage.getItem("videoQuality") || "720p";
+    videoType.value = localStorage.getItem("videoType") || "Short Video";
+    videoAIModel.value = localStorage.getItem("videoAIModel") || "Sora 2 (1080p • 10s)";
 }
 function handleValidation(wordCount) {
     if (wordCount > MAX_CHARACTERS) {

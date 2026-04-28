@@ -161,7 +161,7 @@ select, input[type="file"] {
     backdrop-filter: blur(10px);
 }
 
-#generate-btn {
+#generateBtn {
     width: 100%;
     padding: 14px;
     border-radius: 14px;
