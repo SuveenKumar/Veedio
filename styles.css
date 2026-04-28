@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f172a, #020617);
+    color: white;
+}
+
+/* Layout */
+.app {
+    padding: 16px;
+    padding-bottom: 90px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    font-size: 20px;
+}
+
+.header p {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.status {
+    color: #22c55e;
+    font-size: 13px;
+}
+
+/* Glass Card */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    padding: 14px;
+    margin-bottom: 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Labels */
+label {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* Inputs */
+textarea {
+    width: 100%;
+    height: 90px;
+    border-radius: 12px;
+    border: none;
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    color: white;
+}
+
+select, input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255,255,255,0.05);
+    color: white;
+}
+
+/* Toggle */
+.toggle {
+    display: flex;
+    gap: 8px;
+}
+
+.toggle button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    transition: 0.3s;
+}
+
+.toggle .active {
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* Upload */
+.upload img {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 12px;
+    display: none;
+}
+
+/* Preview */
+.preview-box {
+    position: relative;
+}
+
+.preview-box img {
+    width: 100%;
+    border-radius: 14px;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.6);
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+/* Bottom Button */
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 12px;
+    background: rgba(2,6,23,0.8);
+    backdrop-filter: blur(10px);
+}
+
+.generate-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    color: white;
+    box-shadow: 0 8px 20px rgba(99,102,241,0.4);
+}
