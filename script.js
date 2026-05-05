@@ -56,7 +56,7 @@ async function generate() {
                 model: videoAIModel.value,
                 prompt: promptInput.value,
                 duration: videoLength.value,
-                resolution: videoType.value,
+                resolution: videoQuality.value,
                 aspect_ratio: videoType.value === "Long Video" ? "16:9" : "9:16",
                 add_audio: true
             })
