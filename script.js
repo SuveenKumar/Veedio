@@ -55,7 +55,7 @@ async function generate() {
             body: JSON.stringify({
                 model: videoAIModel.value,
                 prompt: promptInput.value,
-                duration: videoLength.value === "5s" ? 5 : 10,
+                duration: videoLength.value,
                 resolution: videoType.value,
                 aspect_ratio: videoType.value === "Long Video" ? "16:9" : "9:16",
                 add_audio: true
