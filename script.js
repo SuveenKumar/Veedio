@@ -1,5 +1,8 @@
 const API_KEY = "lannetech_6e0b80fa9037cd8de670ced8eb0dd6a7838f669b9ee259ec59e9319f42c7f20a";
-
+const CLOUD_NAME = "dne19jlsg";
+const UPLOAD_PRESET = "gt4sk9kh";
+const CLOUD_API_KEY = "922372645378976";
+const CLOUD_API_SECERET = "tfiNdXuS5UYeZ5CB7-BAdC8ntpo";
 const promptInput = document.getElementById("promptInput");
 const warning = document.getElementById("wordWarning");
 const videoLength = document.getElementById("videoLength");
@@ -10,6 +13,12 @@ const generateBtn = document.getElementById("generateBtn");
 const statusMessage = document.getElementById("status");
 const videoSource = document.getElementById("videoSource");
 const previewBox = document.getElementById("previewBox");
+const imageUpload = document.getElementById("imageUpload");
+const imagePreview = document.getElementById("imagePreview");
+const uploadStatus = document.getElementById("uploadStatus");
+const removeImageBtn = document.getElementById("removeImageBtn");
+const plusIcon = document.getElementById("plusIcon");
+let selectedImageFile = localStorage.getItem("selectedImageFile") || "";
 let generationID = localStorage.getItem("generationID") || "";
 const MAX_CHARACTERS = 1000;
 
@@ -37,6 +46,96 @@ generateBtn.addEventListener("click", function () {
     generate();
 });
 
+
+imageUpload.addEventListener("change", async function () {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+    uploadStatus.innerText = "Uploading image...";
+
+    const imageUrl = await uploadImage(file);
+
+    if (!imageUrl) {
+        uploadStatus.innerText = "Upload failed";
+        selectedImageFile = "";
+
+        return;
+    }
+
+    selectedImageFile = imageUrl;
+
+    imagePreview.src = selectedImageFile;
+    imagePreview.style.display = "block";
+    plusIcon.style.display = "none";
+    removeImageBtn.style.display = "block";
+    uploadStatus.innerText = "Uploaded Successfully";
+    uploadBox.classList.add("has-image");
+    Save();
+});
+
+removeImageBtn.addEventListener("click", function (e) {
+
+    e.preventDefault();
+
+    // Reset image
+    imagePreview.src = "";
+    imagePreview.style.display = "none";
+
+    // Show plus icon again
+    plusIcon.style.display = "block";
+
+    // Hide delete button
+    removeImageBtn.style.display = "none";
+
+    // Clear input
+    imageUpload.value = "";
+
+    // Clear saved values
+    selectedImageFile = "";
+    uploadBox.classList.remove("has-image");
+
+    Save();
+});
+
+async function uploadImage(file) {
+
+    try {
+
+
+        const formData = new FormData();
+
+        formData.append("file", file);
+        formData.append("upload_preset", UPLOAD_PRESET);
+
+        const res = await fetch(
+            `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        // Parse response
+        const data = await res.json();
+
+        console.log(data);
+
+        // Error from API
+        if (!res.ok) {
+            throw new Error(data.error?.message || "Upload failed");
+        }
+
+        // Return uploaded image url
+        return data.secure_url;
+
+    } catch (error) {
+
+        return null;
+    }
+}
+
 async function generate() {
     if (!promptInput.value) {
         alert("Enter prompt first");
@@ -58,7 +157,8 @@ async function generate() {
                 duration: videoLength.value,
                 resolution: videoQuality.value,
                 aspect_ratio: videoType.value === "Long Video" ? "16:9" : "9:16",
-                add_audio: true
+                add_audio: true,
+                image_url: selectedImageFile
             })
         });
         const data = await res.json();
@@ -66,7 +166,7 @@ async function generate() {
             generationID = data.generation_id;
             statusMessage.innerText = "Submitted";
         }
-        else{
+        else {
             statusMessage.innerText = data.error;
             generateBtn.disabled = false;
         }
@@ -143,6 +243,16 @@ function Load() {
     statusMessage.innerText = localStorage.getItem("statusMessage") || "● Live";
     generationID.value = localStorage.getItem("generationID") || "";
     videoSource.src = localStorage.getItem("videoSource") || "";
+    const savedImage = localStorage.getItem("selectedImageFile");
+    if (savedImage) {
+
+        imagePreview.src = savedImage;
+        imagePreview.style.display = "block";
+
+        plusIcon.style.display = "none";
+        removeImageBtn.style.display = "flex";
+        uploadBox.classList.add("has-image");
+    }
 
 }
 function handleValidation(wordCount) {
@@ -170,6 +280,7 @@ function Save() {
     localStorage.setItem("generationID", generationID);
     localStorage.setItem("statusMessage", statusMessage.innerText);
     localStorage.setItem("videoSource", videoSource.src);
+    localStorage.setItem("selectedImageFile", selectedImageFile);
 }
 
 Load();

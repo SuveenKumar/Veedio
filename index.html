@@ -29,6 +29,35 @@
             </div>
         </div>
 
+        <!-- Image Upload -->
+        <div class="glass-card">
+
+            <label>Reference Image</label>
+
+            <div class="upload-container">
+
+                <label for="imageUpload" class="upload-box" id="uploadBox">
+
+                    <span id="plusIcon">+</span>
+
+                    <img id="imagePreview" />
+
+                    <!-- Move button here -->
+                    <button id="removeImageBtn" type="button">
+                        ✕
+                    </button>
+
+                </label>
+
+                <input type="file" id="imageUpload" accept="image/*" hidden>
+
+            </div>
+
+            <div id="uploadStatus" class="upload-status">
+            </div>
+
+        </div>
+
         <!-- Settings -->
         <div class="glass-card grid">
             <div>
